@@ -41,7 +41,7 @@ var schema = new SimpleSchema({
 	field: {
 		type: Object,
 		blackbox: true,
-		custom: dynamic.field('fieldSchemaType')
+		custom: dynamic.custom('fieldSchemaType')
 	}
 });
 
@@ -86,7 +86,7 @@ var schema = new SimpleSchema({
 	field: {
 		type: Object,
 		blackbox: true,
-		custom: dynamic.field('fieldSchemaType')
+		custom: dynamic.custom('fieldSchemaType')
 	}
 });
 
@@ -115,8 +115,8 @@ SimpleSchema generator based on registred types.
 
 SimpleSchema(s) storage by type names.
 
-### dynamic.field
-> dynamic.field(typeKey: String) => custom: Function
+### dynamic.custom
+> dynamic.custom(typeKey: String) => custom: Function
 
 Returns the function of custom validation object based on the adjacent key in the document.
 

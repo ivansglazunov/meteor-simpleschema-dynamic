@@ -1,6 +1,6 @@
 Package.describe({
 	name: 'ivansglazunov:simpleschema-dynamic',
-	version: '0.0.2',
+	version: '0.0.3',
 	summary: 'Dynamic SimpleSchema value typing for different documents.',
 	git: 'https://github.com/ivansglazunov/meteor-simpleschema-dynamic',
 	documentation: 'README.md'

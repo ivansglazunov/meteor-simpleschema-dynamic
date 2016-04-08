@@ -27,13 +27,13 @@ SimpleSchema.Dynamic = class {
 		return new SimpleSchema(_schemas);
 	};
 	
-	// dynamic.field(typeKey: String) => custom: Function
-	field(typeKey) {
+	// dynamic.custom(typeKey: String) => custom: Function
+	custom(typeKey) {
 		var dynamic = this;
 		return function() {
 			var typeField = this.field(typeKey);
 			try {
-				var schema = this.schema(typeField);
+				var schema = dynamic.schema(typeField.value);
 			} catch(error) {
 				return 'notAllowed';
 			}
