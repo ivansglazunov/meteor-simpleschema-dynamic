@@ -1,5 +1,7 @@
 # SimpleSchema.Dynamic
 
+[GitHub](https://github.com/ivansglazunov/meteor-simpleschema-dynamic) [Atmosphere.js](atmospherejs.com/ivansglazunov/simpleschema-dynamic)
+
 Dynamic SimpleSchema value typing for different documents.
 
 You are all so the same can not use these schemes for generating forms automatically, however you can based on the type to choose the desired schema in `dynamic.types`.
