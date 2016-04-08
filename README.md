@@ -97,3 +97,30 @@ collection.insert({
 	field: { abc: 123, cde: false }
 });
 ```
+
+## Documentation
+
+### SimpleSchema.Dynamic
+> new SimpleSchema.Dynamic();
+
+Constructor of dynamic simpleschema(s) storage.
+
+### dynamic.schema
+> dynamic.schema(types: String|[String]) => SimpleSchema
+
+SimpleSchema generator based on registred types.
+
+### dynamic.types
+> dynamic.types[type]: SimpleSchema
+
+SimpleSchema(s) storage by type names.
+
+### dynamic.field
+> dynamic.field(typeKey: String) => custom: Function
+
+Returns the function of custom validation object based on the adjacent key in the document.
+
+## Versions
+
+### 0.0.2
+* `.schema`

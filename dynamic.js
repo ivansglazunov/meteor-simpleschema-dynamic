@@ -1,30 +1,42 @@
+// new SimpleSchema.Dynamic();
 SimpleSchema.Dynamic = class {
 	constructor() {
 		this.types = [];
 	};
-	// (typeKey: String) => Function
+	
+	// Generate schema based on types.
+	// dynamic.schema(types: String|[String]) => SimpleSchema
+	schema(types) {
+		var _types = [];
+		// Array type
+		if (lodash.isString(types)) {
+			var _types = [types];
+		} else if (lodash.isArray(types)) {
+			var _types = types;
+		} else throw new Meteor.Error('Unexpected types.');
+		
+		var _schemas = [];
+		for (var v in _types) {
+			if (!(_types[v] in this.types))
+				throw new Meteor.Error('Type is not defined.');
+			else {
+				_schemas.push(this.types[_types[v]]);
+			}
+		}
+		
+		return new SimpleSchema(_schemas);
+	};
+	
+	// dynamic.field(typeKey: String) => custom: Function
 	field(typeKey) {
 		var dynamic = this;
 		return function() {
 			var typeField = this.field(typeKey);
-			
-			// Array type
-			if (lodash.isString(typeField.value)) {
-				var typeValue = [typeField.value];
-			} else if (lodash.isArray(typeField.value)) {
-				var typeValue = typeField.value;
-			} else return 'notAllowed';
-			
-			var _schemas = [];
-			for (var v in typeValue) {
-				if (!(typeValue[v] in dynamic.types))
-					return 'notAllowed';
-				else {
-					_schemas.push(dynamic.types[typeValue[v]]);
-				}
+			try {
+				var schema = this.schema(typeField);
+			} catch(error) {
+				return 'notAllowed';
 			}
-			
-			var schema = new SimpleSchema(_schemas);
 			var context = schema.newContext();
 			if (!context.validate(this.value)) {
 				return 'notAllowed';
